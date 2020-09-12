@@ -1,5 +1,5 @@
 # Audica Custom Difficulty Names
-A mod that allows map makers to override the names of the map difficulties
+A mod that allows map makers to override the names of the song difficulties
  
 ## Installation
 * Download MelonLoader from [here](https://github.com/HerpDerpinstine/MelonLoader/releases/latest)
