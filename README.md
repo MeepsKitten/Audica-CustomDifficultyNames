@@ -3,7 +3,7 @@ A mod that allows map makers to override the names of the map difficulties
  
 ## Installation
 * Download MelonLoader from [here](https://github.com/HerpDerpinstine/MelonLoader/releases/latest)
-* Download CustomDifficultyNames from [here](https://github.com/octoberU/SongBrowser/releases/latest)
+* Download CustomDifficultyNames from [here](https://github.com/meepsalot69/Audica-CustomDifficultyNames/releases/latest)
 * Put the **CustomDifficultyNames.dll** into Audica/Mods
 
 ## Changing difficulty names in your map
