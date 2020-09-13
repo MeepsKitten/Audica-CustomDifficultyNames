@@ -20,6 +20,8 @@ In future [Song Browser](https://github.com/octoberU/SongBrowser) releases (Newe
 "customBeginner" : "YOUR NAME HERE"
 </code></pre>
 
+**Advanced**: You can add [formatting tags](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) to custom names. Note that some characters (like quotation marks) require an escape character ('/' in this case) to be present in song.desc
+
 ### Example of full song.desc
 <pre><code>{
   "songID": "Mirror-MeepsKitten",
