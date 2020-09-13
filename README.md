@@ -27,6 +27,8 @@ Example:
 
 This would result in a difficulty that displays as <code>this is how you escape a character " see, not too hard</code>
 
+You can use [this tool](https://www.freeformatter.com/json-escape.html) to see what characters are reserved and to automatically apply escape characters to any text.
+
 **Advanced**: You can add [formatting tags](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) to custom names. Any Text Mesh Pro tag should work.
 
 ### Example of full song.desc
