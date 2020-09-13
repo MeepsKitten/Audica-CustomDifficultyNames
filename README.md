@@ -20,7 +20,14 @@ In future [Song Browser](https://github.com/octoberU/SongBrowser) releases (Newe
 "customBeginner" : "YOUR NAME HERE"
 </code></pre>
 
-**Advanced**: You can add [formatting tags](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) to custom names. Note that some characters (like quotation marks) require an escape character ('/' in this case) to be present in song.desc
+**Note**: some characters (like quotation marks) require an escape character ('/' in this case) to be able to be added to song.desc. If you don't do this your song will not load in game.
+
+Example:
+<code>"customAdvanced" : "this is how you escape a character /" see, not too hard"</code>
+
+This would result in a difficulty that displays as <code>this is how you escape a character " see, not too hard</code>
+
+**Advanced**: You can add [formatting tags](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) to custom names. Any Text Mesh Pro tag should work.
 
 ### Example of full song.desc
 <pre><code>{
