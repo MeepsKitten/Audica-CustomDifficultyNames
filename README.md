@@ -1,6 +1,11 @@
 # Audica Custom Difficulty Names
 A mod that allows map makers to override the names of the song difficulties
- 
+
+## Song Browser Users
+In future [Song Browser](https://github.com/octoberU/SongBrowser) releases (Newer than v2.0.1) this mod's functionality will be included automatically.
+
+<b>You do not need this mod if you have an installation of Song Browser newer than v2.0.1</b>
+
 ## Installation
 * Download MelonLoader from [here](https://github.com/HerpDerpinstine/MelonLoader/releases/latest)
 * Download CustomDifficultyNames from [here](https://github.com/meepsalot69/Audica-CustomDifficultyNames/releases/latest)
