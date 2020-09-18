@@ -17,7 +17,7 @@ using AudicaModding;
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0")]
 [assembly: NeutralResourcesLanguage("en")]
-[assembly: MelonInfo(typeof(CustomDifficultyNames), "Custom Difficulty Names", "1.0.0", "MeepsKitten")]
+[assembly: MelonInfo(typeof(AudicaModding.CustomDifficultyNames), "Custom Difficulty Names", "1.0.0", "MeepsKitten")]
 
 
 // Create and Setup a MelonModGame to mark a Mod as Universal or Compatible with specific Games.

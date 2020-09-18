@@ -1,88 +1,147 @@
-﻿using Il2CppSystem;
-using MelonLoader;
-using System.Collections.Generic;
+﻿using MelonLoader;
 using UnityEngine;
-using System.IO;
-using System.IO.Compression;
-using MelonLoader.TinyJSON;
+using TMPro;
+using System.Collections;
+using Harmony;
+using System;
+using System.Linq;
+
+//[assembly: MelonOptionalDependencies("CustomSongDataLoader")]
+
 
 namespace AudicaModding
 {
     public class CustomDifficultyNames : MelonMod
     {
-        public static Dictionary<string, CustomNameData> CustomDifficulties = new Dictionary<string, CustomNameData>();
-        public static bool NamesAlreadyLoaded = false;
-        public class CustomNameData
+        public static IEnumerator ChangeNamesLP(LaunchPanel __instance)
         {
-            public bool hasCustomExpertName = false;
-            public bool hasCustomAdvancedName = false;
-            public bool hasCustomModerateName = false;
-            public bool hasCustomBeginnerName = false;
+            yield return new WaitForSeconds(0.05f);
 
+            var song = SongDataHolder.I.songData;
 
-            public string customExpert = "";
-            public string customAdvanced = "";
-            public string customModerate = "";
-            public string customBeginner = "";
-        }
+            if (!CustomSongDataLoader.SongHasCustomData(song.songID))
+                yield break;
 
-        public static void LoadCustomNames()
-        {
-            if (!NamesAlreadyLoaded)
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customExpert"))
             {
-                CustomDifficulties = new Dictionary<string, CustomNameData>();
+                __instance.expert.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customExpert");
+            }
+            else
+            {
+                __instance.expert.GetComponentInChildren<TextMeshPro>().text = "Expert";
+            }
 
-                foreach (SongList.SongData data in SongList.I.songs.ToArray())
-                {
-                    ZipArchive SongFiles = ZipFile.OpenRead(data.foundPath);
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customAdvanced"))
+            {
+                __instance.hard.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customAdvanced");
+            }
+            else
+            {
+                __instance.hard.GetComponentInChildren<TextMeshPro>().text = "Advanced";
 
-                    foreach (ZipArchiveEntry entry in SongFiles.Entries)
-                    {
-                        if (entry.Name == "song.desc")
-                        {
-                            Stream songData = entry.Open();
-                            StreamReader reader = new StreamReader(songData);
-                            string descDump = reader.ReadToEnd();
-                            CustomNameData DifficultyNames = new CustomNameData();
-                            DifficultyNames = JSON.Load(descDump).Make<CustomNameData>();
+            }
 
-                            bool anyAreTrue = false;
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customModerate"))
+            {
+                __instance.normal.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customModerate");
+            }
+            else
+            {
+                __instance.normal.GetComponentInChildren<TextMeshPro>().text = "Moderate";
 
+            }
 
-                            if (DifficultyNames.customExpert.Length > 0)
-                            {
-                                DifficultyNames.hasCustomExpertName = true;
-                                anyAreTrue = true;
-                            }
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customBeginner"))
+            {
+                __instance.easy.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customBeginner");
+            }
+            else
+            {
+                __instance.easy.GetComponentInChildren<TextMeshPro>().text = "Beginner";
 
-                            if (DifficultyNames.customAdvanced.Length > 0)
-                            {
-                                DifficultyNames.hasCustomAdvancedName = true;
-                                anyAreTrue = true;
-                            }
-
-                            if (DifficultyNames.customModerate.Length > 0)
-                            {
-                                DifficultyNames.hasCustomModerateName = true;
-                                anyAreTrue = true;
-                            }
-
-                            if (DifficultyNames.customBeginner.Length > 0)
-                            {
-                                DifficultyNames.hasCustomBeginnerName = true;
-                                anyAreTrue = true;
-                            }
-
-                            if (anyAreTrue)
-                                CustomDifficulties[data.songID] = DifficultyNames;
-
-
-                        }
-                    }
-                    NamesAlreadyLoaded = true;
-                    SongFiles.Dispose();
-                }
             }
         }
+
+        public static IEnumerator ChangeNamesDS(DifficultySelect __instance)
+        {
+            yield return new WaitForSeconds(0.05f);
+
+            var song = SongDataHolder.I.songData;
+
+            if (!CustomSongDataLoader.SongHasCustomData(song.songID))
+                yield break;
+
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customExpert"))
+            {
+                __instance.expert.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customExpert"));
+            }
+            else
+            {
+                __instance.expert.label.text = "Expert";
+            }
+
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customAdvanced"))
+            {
+                __instance.hard.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customAdvanced"));
+            }
+            else
+            {
+                __instance.hard.label.text = "Advanced";
+
+            }
+
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customModerate"))
+            {
+                __instance.normal.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customModerate"));
+            }
+            else
+            {
+                __instance.normal.label.text = "Moderate";
+
+            }
+
+            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customBeginner"))
+            {
+                __instance.easy.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customBeginner"));
+            }
+            else
+            {
+                __instance.easy.label.text = "Beginner";
+            }
+
+
+
+        }
+
+        [HarmonyPatch(typeof(LaunchPanel), "OnEnable", new Type[0])]
+        private static class DisplayCustomNameLP
+        {
+            private static void Prefix(LaunchPanel __instance)
+            {
+                if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(CustomSongDataLoader)))                {
+                    IEnumerator coroutine = ChangeNamesLP(__instance);
+                    MelonCoroutines.Start(coroutine);
+                }
+                else
+                    MelonLogger.LogError("Custom Song Data mod not detected, Custom difficulty names will not run");
+            }
+
+        }
+
+        [HarmonyPatch(typeof(DifficultySelect), "OnEnable", new Type[0])]
+        private static class DisplayCustomNameDS
+        {
+            private static void Prefix(DifficultySelect __instance)
+            {
+                if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(CustomSongDataLoader)))
+                {
+                    IEnumerator coroutine = ChangeNamesDS(__instance);
+                    MelonCoroutines.Start(coroutine);
+                }
+                else
+                    MelonLogger.LogError("Custom Song Data mod not detected, Custom difficulty names will not run");
+            }
+
+    }
     }
 }
