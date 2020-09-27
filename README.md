@@ -8,7 +8,7 @@ In future [Song Browser](https://github.com/octoberU/SongBrowser) releases (Newe
 
 ## Installation
 * Download MelonLoader from [here](https://github.com/HerpDerpinstine/MelonLoader/releases/latest)
-* Download CustomDifficultyNames and [CustomSongData](https://github.com/MeepsKitten/CustomSongDataLoader) from [here](https://github.com/meepsalot69/Audica-CustomDifficultyNames/releases/latest)
+* Download CustomDifficultyNames and [SongDataLoader](https://github.com/MeepsKitten/CustomSongDataLoader) from [here](https://github.com/meepsalot69/Audica-CustomDifficultyNames/releases/latest)
 * Put **CustomDifficultyNames.dll** and **SongDataLoader.dll** into Audica/Mods
 
 ## Changing difficulty names in your map
