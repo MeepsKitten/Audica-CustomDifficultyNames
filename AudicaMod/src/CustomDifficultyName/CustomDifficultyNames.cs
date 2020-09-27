@@ -19,21 +19,21 @@ namespace AudicaModding
 
             var song = SongDataHolder.I.songData;
 
-            if (!CustomSongDataLoader.SongHasCustomData(song.songID))
+            if (!SongDataLoader.AllSongData[song.songID].HasCustomData())
                 yield break;
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customExpert"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customExpert"))
             {
-                __instance.expert.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customExpert");
+                __instance.expert.GetComponentInChildren<TextMeshPro>().text = SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customExpert");
             }
             else
             {
                 __instance.expert.GetComponentInChildren<TextMeshPro>().text = "Expert";
             }
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customAdvanced"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customAdvanced"))
             {
-                __instance.hard.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customAdvanced");
+                __instance.hard.GetComponentInChildren<TextMeshPro>().text = SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customAdvanced");
             }
             else
             {
@@ -41,9 +41,9 @@ namespace AudicaModding
 
             }
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customModerate"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customModerate"))
             {
-                __instance.normal.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customModerate");
+                __instance.normal.GetComponentInChildren<TextMeshPro>().text = SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customModerate");
             }
             else
             {
@@ -51,9 +51,9 @@ namespace AudicaModding
 
             }
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customBeginner"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customBeginner"))
             {
-                __instance.easy.GetComponentInChildren<TextMeshPro>().text = CustomSongDataLoader.GetCustomData<string>(song.songID, "customBeginner");
+                __instance.easy.GetComponentInChildren<TextMeshPro>().text = SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customBeginner");
             }
             else
             {
@@ -68,21 +68,21 @@ namespace AudicaModding
 
             var song = SongDataHolder.I.songData;
 
-            if (!CustomSongDataLoader.SongHasCustomData(song.songID))
+            if (!SongDataLoader.AllSongData[song.songID].HasCustomData())
                 yield break;
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customExpert"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customExpert"))
             {
-                __instance.expert.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customExpert"));
+                __instance.expert.label.SetText(SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customExpert"));
             }
             else
             {
                 __instance.expert.label.text = "Expert";
             }
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customAdvanced"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customAdvanced"))
             {
-                __instance.hard.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customAdvanced"));
+                __instance.hard.label.SetText(SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customAdvanced"));
             }
             else
             {
@@ -90,9 +90,9 @@ namespace AudicaModding
 
             }
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customModerate"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customModerate"))
             {
-                __instance.normal.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customModerate"));
+                __instance.normal.label.SetText(SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customModerate"));
             }
             else
             {
@@ -100,9 +100,9 @@ namespace AudicaModding
 
             }
 
-            if (CustomSongDataLoader.SongHasCustomDataKey(song.songID, "customBeginner"))
+            if (SongDataLoader.AllSongData[song.songID].SongHasCustomDataKey("customBeginner"))
             {
-                __instance.easy.label.SetText(CustomSongDataLoader.GetCustomData<string>(song.songID, "customBeginner"));
+                __instance.easy.label.SetText(SongDataLoader.AllSongData[song.songID].GetCustomData<string>("customBeginner"));
             }
             else
             {
@@ -118,7 +118,7 @@ namespace AudicaModding
         {
             private static void Prefix(LaunchPanel __instance)
             {
-                if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(CustomSongDataLoader)))                {
+                if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(SongDataLoader)))                {
                     IEnumerator coroutine = ChangeNamesLP(__instance);
                     MelonCoroutines.Start(coroutine);
                 }
@@ -133,7 +133,7 @@ namespace AudicaModding
         {
             private static void Prefix(DifficultySelect __instance)
             {
-                if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(CustomSongDataLoader)))
+                if (MelonHandler.Mods.Any(it => it.Info.SystemType.Name == nameof(SongDataLoader)))
                 {
                     IEnumerator coroutine = ChangeNamesDS(__instance);
                     MelonCoroutines.Start(coroutine);

@@ -39,10 +39,6 @@
       <HintPath>lib\Assembly-CSharp-firstpass.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="CustomSongData, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>src\lib\CustomSongData.dll</HintPath>
-    </Reference>
     <Reference Include="Il2CppMono.Security">
       <HintPath>lib\Il2CppMono.Security.dll</HintPath>
       <Private>False</Private>
@@ -82,6 +78,10 @@
     <Reference Include="Sanford.Multimedia.Midi">
       <HintPath>lib\Sanford.Multimedia.Midi.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="SongDataLoader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>src\lib\SongDataLoader.dll</HintPath>
     </Reference>
     <Reference Include="SonyNP">
       <HintPath>lib\SonyNP.dll</HintPath>
@@ -211,7 +211,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\CustomSongData.dll" />
+    <Content Include="src\lib\SongDataLoader.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
